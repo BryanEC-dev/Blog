@@ -3,7 +3,7 @@
         <h3>Identificate</h3>
         <form action="login.php" method="post">
             <label for="email">Email</label>
-            <input name="email" type="email">
+            <input name="email" type="text">
 
             <label for="password">Contraseña</label>
             <input name="password" type="password">
@@ -15,6 +15,13 @@
 
     <div id="register" class='bloque'>
         <h3>Registrate</h3>
+        <?php
+        if(isset($_GET['errores'])){
+            $errores = unserialize($_GET['errores']);
+             foreach ( $errores as $error) {
+               echo showErrors($error);
+             }
+        } ?>
         <form action="register.php" method="post">
             <label for="nombre">Nombres</label>
             <input name="nombre" type="text">
@@ -23,7 +30,7 @@
             <input name="apellidos" type="text">
 
             <label for="email">Email</label>
-            <input name="email" type="email">
+            <input name="email" type="text">
 
             <label for="password">Contraeseña</label>
             <input name="password" type="password">

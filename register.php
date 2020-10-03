@@ -33,6 +33,7 @@ if(!filter_var($email,FILTER_VALIDATE_EMAIL))
 
 validateErrors();
 
+// Guardar usuario
 
 
 
@@ -53,8 +54,11 @@ function error($error){
 function validateErrors() {
     global $errors;
     if(!empty($errors)){
-        // mostrar mensajes de error por pantalla
-        var_dump($errors);
+        // serializar el array para poder pasarlo por la url
+        $error = serialize($errors);
+        $error = urlencode($error);
+        // enviar los errores al index
+        header("location:index.php?errores=".$error);
     }
 }
 

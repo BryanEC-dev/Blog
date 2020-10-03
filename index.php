@@ -1,5 +1,9 @@
 <?php
 require_once('includes/cabecera.php');
+require_once('includes/helpers.php');
+
+
+
 ?>
 
 <div id="contenedor">
