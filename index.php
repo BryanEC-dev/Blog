@@ -7,6 +7,12 @@ require_once('includes/helpers.php');
 ?>
 
 <div id="contenedor">
+    <?php
+    if(isset($_GET['mensaje']) && $_GET['mensaje'] == 1){
+      echo alert("Usuario creado con exito");
+    }elseif (isset($_GET['mesanje']) && $_GET['mensaje'] == 0){
+        echo showErrors('Hubo un error al crear el usuario, intente mas tarde.');
+    } ?>
     <!-- Barra lateral -->
     <?php require_once('includes/lateral.php'); ?>
     <!-- /Barra lateral -->

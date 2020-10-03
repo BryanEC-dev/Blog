@@ -1,6 +1,10 @@
 <aside id="sidebar">
     <div id="login" class='bloque'>
         <h3>Identificate</h3>
+        <?php
+        if(isset($_GET['error'])){
+            echo showErrors($_GET['error']);
+        } ?>
         <form action="login.php" method="post">
             <label for="email">Email</label>
             <input name="email" type="text">

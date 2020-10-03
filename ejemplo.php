@@ -28,6 +28,7 @@ if($insert){
 $consulta = mysqli_query($conexion,"select * from notas");
 
 
+
 // obteniendo la información de la consulta
 
 while ($nota = mysqli_fetch_assoc($consulta)) {

@@ -1,5 +1,11 @@
 <?php
 
+//TODO
+// escapar datos
+// crear log con errores
+
+require_once('includes/conexion.php');
+
 $name = '';
 $lastName = '';
 $email = '';
@@ -33,11 +39,26 @@ if(!filter_var($email,FILTER_VALIDATE_EMAIL))
 
 validateErrors();
 
-// Guardar usuario
+// encrytar contraseña
+$segure_password = encryptPassword($password);
 
+// insertar en la base
 
+$sql = "INSERT INTO usuarios VALUES(null,'$name','$lastName','$email','$segure_password',CURRENT_DATE )";
 
+$save = mysqli_query($db,$sql);
 
+if($save) {
+    $message = true;
+    //$_SESSION['user'] = "La sesión se encuentra iniciada";
+    header("location:index.php?mensaje=".$message );
+
+}else {
+    // guardar en el log los errores
+    var_dump(mysqli_error($db));
+    $message = false;
+    header("location:index.php?mensaje=".$message );
+}
 
 
 
@@ -48,6 +69,7 @@ validateErrors();
 function error($error){
     global $errors;
     array_push($errors,$error);
+    return null;
 }
 
 // en caso de existir errores [$errors] mostrara por pantalla la lista de los errores presentados
@@ -62,6 +84,11 @@ function validateErrors() {
     }
 }
 
+
+function encryptPassword($password) {
+   return password_hash($password,PASSWORD_BCRYPT, ['cost' => 4]);
+
+}
 
 
 
